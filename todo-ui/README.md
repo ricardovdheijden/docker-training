@@ -27,9 +27,11 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+Note: set the environment variable `REACT_APP_BACKEND_URL` before executing the `npm run build` command. Environment variables will be applied when the project is being built.
+
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Install 'serve' as global dependency `npm install -g serve` and execute `serve -s build` from the root of the project
+Install 'serve' as global dependency `npm install -g serve` and execute `serve -s build` from the root of the project.
 
 ### `npm run eject`
 

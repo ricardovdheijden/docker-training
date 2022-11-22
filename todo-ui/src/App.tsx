@@ -7,21 +7,21 @@ const App = () => {
         name: string
     }
 
-    const baseUrl = 'http://localhost:3001/api'
+    const backendUrl = `${process.env.REACT_APP_BACKEND_URL}` || 'http://localhost:3001/api'
     const [input, setInput] = useState('');
     const [todos, setTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch(`${baseUrl}/todos`);
+            const response = await fetch(`${backendUrl}/todos`);
             const responseJson: Todo[] = await response.json();
             setTodos(responseJson);
         }
         fetchData();
-    }, []);
+    }, [backendUrl]);
 
     async function fetchTodos() {
-        const response = await fetch(`${baseUrl}/todos`);
+        const response = await fetch(`${backendUrl}/todos`);
         const responseJson: Todo[] = await response.json();
         setTodos(responseJson);
     }
@@ -30,7 +30,7 @@ const App = () => {
         const todo: Partial<Todo> = {
             name
         };
-        const response = await fetch(`${baseUrl}/todos`, {
+        const response = await fetch(`${backendUrl}/todos`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ const App = () => {
     }
 
     async function removeTodo(id: number) {
-        const response = await fetch(`${baseUrl}/todos/${id}`, {
+        const response = await fetch(`${backendUrl}/todos/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
