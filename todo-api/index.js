@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
+
 app.use(express.json());
+app.use(cors());
 
 let todoItems = [
     { id: 1, name: 'Move todo-api to Docker container' },
@@ -15,7 +18,7 @@ app.get('/api/todos', (req, res) => {
 
 app.post('/api/todos', (req, res) => {
     const todoItem = {
-        id: todoItems[todoItems.length-1].id + 1,
+        id: todoItems.length + 1,
         name: req.body.name
     }
     todoItems.push(todoItem)
